@@ -1,3 +1,3 @@
 #!/usr/bin/python3
 import alphabet
-print(alphabet.ascii_uppercase())
+print(alphabet.ascii_uppercase)
