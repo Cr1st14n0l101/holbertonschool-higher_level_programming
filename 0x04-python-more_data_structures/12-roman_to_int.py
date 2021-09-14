@@ -9,7 +9,7 @@ def roman_to_int(roman_string):
                "D": 500,
                "M": 1000
     }
-    if not roman_string:
+    if not isinstance(roman_string, str):
         return add
     for i in range(len(roman_string)):
         if i > 0 and roman_n[roman_string[i]] > roman_n[roman_string[i - 1]]:
