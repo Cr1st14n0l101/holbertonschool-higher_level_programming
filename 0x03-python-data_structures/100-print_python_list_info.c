@@ -2,6 +2,11 @@
 #include <object.h>
 #include <listobject.h>
 
+/**
+ * print_python_list_info - Prints some basic info about Python lists.
+ * @p: Pointer to the struct PyObject
+ * Return: void
+ */
 void print_python_list_info(PyObject *p)
 {
 	long int size = PyList_Size(p);
