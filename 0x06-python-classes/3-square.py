@@ -4,7 +4,6 @@
 
 class Square:
     "class Square"
-    size = 0
     def __init__(self, new_size=0):
         if isinstance(new_size, int):
             if new_size < 0:
