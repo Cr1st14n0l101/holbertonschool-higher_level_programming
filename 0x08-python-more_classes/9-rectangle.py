@@ -82,7 +82,7 @@ class Rectangle:
     @classmethod
     def square(cls, size=0):
         """Class Method that create a Square"""
-        return Rectangle(size, size)
+        return cls(size, size)
 
     def __del__(self):
         """Delete all the references to the object"""
