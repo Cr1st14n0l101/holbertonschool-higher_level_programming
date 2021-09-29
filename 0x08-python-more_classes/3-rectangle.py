@@ -48,7 +48,10 @@ class Rectangle:
         return 2 * (self.__height + self.width)
 
     def __str__(self):
-        """Returns an “informal” and nicely printable string representation of an instance"""
+        """
+        Returns an “informal” and nicely printable string
+        representation of an instance
+        """
         string = ""
         if self.__width == 0 or self.__height == 0:
             return string
@@ -58,4 +61,3 @@ class Rectangle:
             elif i == self.height - 1:
                 string += "#" * self.__width
         return string
-
