@@ -6,8 +6,8 @@ class Rectangle:
     """Class Rectangle Empty"""
 
     def __init__(self, width=0, height=0):
-        self.__height = height
-        self.__width = width
+        self.height = height
+        self.width = width
 
     @property
     def width(self):
@@ -18,10 +18,9 @@ class Rectangle:
         """Set the Value to the width"""
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
-        elif value < 0:
+        if value < 0:
             raise ValueError("width must be >= 0")
-        else:
-            self.__width = value
+        self.__width = value
 
     @property
     def height(self):
@@ -31,11 +30,10 @@ class Rectangle:
     def height(self, value):
         """Set the Value to the height"""
         if not isinstance(value, int):
-            raise TypeError("width must be an integer")
-        elif value < 0:
-            raise ValueError("width must be >= 0")
-        else:
-            self.__height = value
+            raise TypeError("height must be an integer")
+        if value < 0:
+            raise ValueError("height must be >= 0")
+        self.__height = value
 
     def area(self):
         """Returns the rectangle area"""
@@ -64,5 +62,5 @@ class Rectangle:
 
     def __repr__(self):
         """Returns an “official” string representation of an instance"""
-        represent = "Rectangle ({}, {})".format(self.__width, self.__height)
+        represent = "Rectangle({}, {})".format(self.__width, self.__height)
         return represent
