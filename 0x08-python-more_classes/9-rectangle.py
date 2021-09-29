@@ -68,6 +68,7 @@ class Rectangle:
         represent = "Rectangle({}, {})".format(self.__width, self.__height)
         return represent
 
+    @staticmethod
     def bigger_or_equal(rect_1, rect_2):
         if not isinstance(rect_1, Rectangle):
             raise TypeError("rect_1 must be an instance of Rectangle")
@@ -81,7 +82,7 @@ class Rectangle:
     @classmethod
     def square(cls, size=0):
         """Class Method that create a Square"""
-        return cls(size, size)
+        return Rectangle(size, size)
 
     def __del__(self):
         """Delete all the references to the object"""
