@@ -1,0 +1,158 @@
+The ``0-add_integer`` module
+======================
+
+Using ''add_integer''
+-------------------
+This is an example text file . First import
+''add_integer'' from the ''0-add_integer'' module:
+	>>> add_integer = __import__('0-add_integer').add_integer
+
+Normal addition:
+
+	>>> print(add_integer(1, 2))
+	3
+
+Addtition only with a variable:
+
+	>>> print(add_integer(2))
+	100
+
+Case for default variable:
+
+	>>> print(add_integer(0))
+	98
+
+Addition of one float:
+
+	>>> print(add_integer(100.3))
+	198
+
+Addition of one negative float:
+
+	>>> print(add_integer(-100.3))
+	-2
+
+Addition of zero and float:
+
+	>>> print(add_integer(0, 100.3))
+	100
+
+Addition with float and neagtive number:
+
+	>>> print(add_integer(100.3, -2))
+	98
+
+Addtition of floats:
+
+	>>> print(add_integer(100.3, 123.27))
+	223
+
+Addtition of float and integer:
+
+	>>> print(add_integer(100.3, 50))
+	150
+
+Addtition of integer and float:
+
+	>>> print(add_integer(8435798345, 1243728.789342))
+	8437042073
+
+Addition of positive and negative number:
+
+	>>> print(add_integer(4, -2))
+	2
+
+Addition of negative and positive number:
+
+	>>> print(add_integer(-4, 2))
+	-2
+
+Addition of negative numbers:
+
+	>>> print(add_integer(-4, -2))
+	-6
+
+String in b:
+
+	>>> print(add_integer(4, "School"))
+	Traceback (most recent call last):
+		...
+	TypeError: b must be an integer
+
+String in a:
+
+	>>> print(add_integer("H", 1))
+	Traceback (most recent call last):
+		...
+	TypeError: a must be an integer
+
+Charecter in a:
+
+	>>> print(add_integer('H', 1))
+	Traceback (most recent call last):
+		...
+	TypeError: a must be an integer
+
+Bolean True in a:
+
+	>>> print(add_integer(True, 1))
+	2
+
+Bolean True in b:
+
+	>>> print(add_integer(1, True))
+	2
+
+Bolean True in a:
+
+	>>> print(add_integer(True, 1))
+	2
+
+Bolean True in b:
+
+	>>> print(add_integer(1, True))
+	2
+
+Bolean True in both:
+
+	>>> print(add_integer(True, True))
+	2
+
+Bolean False in a:
+
+	>>> print(add_integer(False, 1))
+	1
+
+Bolean False in b:
+
+	>>> print(add_integer(1, False))
+	1
+
+Bolean False in both:
+
+	>>> print(add_integer(False, False))
+	0
+
+Addition with a big number:
+
+	>>> print(add_integer(2, 13.949999999999999))
+	15
+
+Two big integers:
+
+	>>> print(add_integer(99999999999, 9999999999999))
+	10099999999998
+
+Addition of infinites:
+
+	>>> print(add_integer(float('inf'), float('-inf')))
+	Traceback (most recent call last):
+		...
+	OverflowError: cannot convert float infinity to integer
+
+Addition of nan:
+
+	>>> print(add_integer(0, float('nan')))
+	Traceback (most recent call last):
+		...
+	ValueError: cannot convert float NaN to integer

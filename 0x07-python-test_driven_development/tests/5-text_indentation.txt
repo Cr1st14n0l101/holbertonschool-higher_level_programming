@@ -1,0 +1,158 @@
+The ``5-text_indentation`` module
+============================
+
+Using ``text_indentation``
+---------------------
+
+Import module:
+
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Test simple sentence:
+
+    >>> text_indentation("Python is fun")
+    Python is fun
+
+Test string with spaces:
+
+    >>> text_indentation("Python          ")
+    Python
+
+Test with spaces before:
+
+    >>> text_indentation("        Python")
+    Python
+
+Test string with spaces before and after:
+
+    >>> text_indentation("        Python          ")
+    Python
+
+Test string empty:
+
+    >>> text_indentation("")
+
+Test string empty with spaces:
+
+    >>> text_indentation("      ")
+
+Test with simbol:
+
+    >>> text_indentation("Python: Is fun")
+    Python:
+    <BLANKLINE>
+    Is fun
+
+Test simbol with spaces:
+
+    >>> text_indentation("      ?    :   :.  ")
+    ?
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+
+Test simbols:
+
+    >>> text_indentation(".?:")
+    .
+    <BLANKLINE>
+    ?
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+
+Test ? simbol:
+
+    >>> text_indentation("     ?   ")
+    ?
+    <BLANKLINE>
+
+Test identation:
+
+    >>> text_indentation("?Hello.")
+    ?
+    <BLANKLINE>
+    Hello.
+    <BLANKLINE>
+
+Test newlines:
+
+    >>> text_indentation("?\n\n.\n\n:")
+    ?
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+
+Test argument none:
+
+    >>> text_indentation(None)
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
+
+Test argument number:
+
+    >>> text_indentation(33)
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
+
+Test argument newline:
+
+    >>> text_indentation("\n")
+    <BLANKLINE>
+
+Test two newlines:
+
+    >>> text_indentation("\n\n")
+    <BLANKLINE>
+    <BLANKLINE>
+
+Test newline 3:
+
+    >>> text_indentation("Python\n\n")
+    Python
+    <BLANKLINE>
+
+Test string between all simbols:
+
+    >>> text_indentation("Python: Is fun? Python. String")
+    Python:
+    <BLANKLINE>
+    Is fun?
+    <BLANKLINE>
+    Python.
+    <BLANKLINE>
+    String
+
+Test string with spaces between all simbols:
+
+    >>> text_indentation("Python   :     Is fun    ?    Python.    String")
+    Python:
+    <BLANKLINE>
+    Is fun?
+    <BLANKLINE>
+    Python.
+    <BLANKLINE>
+    String
+
+Test all delimeters with spaces at end:
+
+    >>> text_indentation("Python   :     Is fun    ?    Python.    String     ")
+    Python:
+    <BLANKLINE>
+    Is fun?
+    <BLANKLINE>
+    Python.
+    <BLANKLINE>
+    String
