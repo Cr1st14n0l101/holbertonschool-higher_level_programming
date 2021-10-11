@@ -1,0 +1,64 @@
+The ``7-base_geometry`` module
+======================
+
+Using ''BaseGeometry''
+-------------------
+First import
+      >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+Bg variable:
+
+      >>> bg = BaseGeometry()
+
+Base test:
+
+     >>> bg.integer_validator("my_int", 12)
+
+Test zero number:
+
+     >>> bg.integer_validator("my_int", 0)
+     Traceback (most recent call last):
+     ...
+     ValueError: my_int must be greater than 0
+
+Test negatve number:
+
+     >>> bg.integer_validator("my_int", -1)
+     Traceback (most recent call last):
+     ...
+     ValueError: my_int must be greater than 0
+
+Test float number:
+
+     >>> bg.integer_validator("my_int", 2.5)
+     Traceback (most recent call last):
+     ...
+     TypeError: my_int must be an integer
+
+Test string number:
+
+     >>> bg.integer_validator("my_int", "string")
+     Traceback (most recent call last):
+     ...
+     TypeError: my_int must be an integer
+
+Test boolean number:
+
+     >>> bg.integer_validator("my_int", True)
+     Traceback (most recent call last):
+     ...
+     TypeError: my_int must be an integer
+
+Test infinite number:
+
+     >>> bg.integer_validator("my_int", True)
+     Traceback (most recent call last):
+     ...
+     TypeError: my_int must be an integer
+
+Test not a number:
+
+     >>> bg.integer_validator("my_int", float('nan'))
+     Traceback (most recent call last):
+     ...
+     TypeError: my_int must be an integer
