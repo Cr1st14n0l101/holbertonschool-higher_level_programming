@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/pytñhon3
 
 """
 Verify if the object is an instance
@@ -9,4 +9,4 @@ from the specified class
 
 def inherits_from(obj, a_class):
     """Verifi if obj is a subclass of a_class"""
-    return isinstance(type(obj), a_class) or type(obj) != a_class
+    return isinstance(obj, a_class) and type(obj) != a_class
