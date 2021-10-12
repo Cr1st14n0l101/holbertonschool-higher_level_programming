@@ -8,5 +8,7 @@ def class_to_json(obj):
     for JSON serialization of an object
     """
     if hasattr(obj, '__dict__'):
+        """
+        retrieves a dictionary representation of a Student instance
+        """
         return obj.__dict__
-        
