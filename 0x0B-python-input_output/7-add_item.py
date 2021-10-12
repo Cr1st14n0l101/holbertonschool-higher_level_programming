@@ -11,6 +11,6 @@ list_argv.pop(0)
 filename = "add_item.json"
 if os.path.exists(filename):
     list_ = load_from_json_file(filename)
-    for i in list_argv:
-        list_.append(i)
+for i in list_argv:
+    list_.append(i)
 save_to_json_file(list_, filename)
