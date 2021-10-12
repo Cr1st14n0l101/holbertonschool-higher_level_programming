@@ -1,4 +1,4 @@
-#!/usr/bin/pytñhon3
+#!/usr/bin/python3
 
 """
 Verify if the object is an instance
