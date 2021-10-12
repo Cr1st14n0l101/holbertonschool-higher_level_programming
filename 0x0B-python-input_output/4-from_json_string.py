@@ -1,4 +1,4 @@
-#!/usr/bin/pythpn3
+#!/usr/bin/python3
 """Module for the function rom_json_string"""
 import json
 
