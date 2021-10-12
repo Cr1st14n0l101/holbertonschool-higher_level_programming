@@ -1,7 +1,6 @@
 #!/usr/bin/pythpn3
-import json
-
 """Module for the function rom_json_string"""
+import json
 
 
 def from_json_string(my_str):
