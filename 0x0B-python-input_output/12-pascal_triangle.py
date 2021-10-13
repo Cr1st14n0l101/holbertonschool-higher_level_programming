@@ -1,10 +1,11 @@
 #!/usr/bin/python3
+"""Function that calcuate the pascal triangle"""
 
 
 def pascal_triangle(n):
+    """The pascal triangle"""
     z = 0
     new_list = []
-
 
     for x in range(n):
         new_list.append([])
