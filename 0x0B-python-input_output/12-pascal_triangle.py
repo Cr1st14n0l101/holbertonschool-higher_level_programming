@@ -10,9 +10,10 @@ def pascal_triangle(n):
         new_list.append([])
 
     if n <= 0:
+        print("[]")
         return new_list
-
     for x in range(n):
+
         for y in range(x + 1):
             if y == 0 or y == x:
                 new_list[x].append(1)
