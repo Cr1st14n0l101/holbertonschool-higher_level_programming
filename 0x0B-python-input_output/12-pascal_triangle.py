@@ -11,7 +11,6 @@ def pascal_triangle(n):
         new_list.append([])
 
     if n <= 0:
-        print("[]")
         return new_list
     for x in range(n):
 
