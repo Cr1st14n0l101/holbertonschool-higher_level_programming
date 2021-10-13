@@ -5,8 +5,12 @@ def pascal_triangle(n):
     z = 0
     new_list = []
 
+
     for x in range(n):
         new_list.append([])
+
+    if n <= 0:
+        return new_list
 
     for x in range(n):
         for y in range(x + 1):
