@@ -7,7 +7,6 @@ class Square(Rectangle):
     """Class with sizes a of Square"""
     def __init__(self, size, x=0, y=0, id=None):
         """Constructor for class Square"""
-        self.size = size
         super().__init__(size, size, x, y, id)
 
     def __str__(self):
@@ -22,7 +21,7 @@ class Square(Rectangle):
     @property
     def size(self):
         """Set size in the class Square"""
-        return self.__size
+        return self.width
 
     @size.setter
     def size(self, value):
@@ -30,7 +29,7 @@ class Square(Rectangle):
             self.verificator(1, "width")
         if value < 0:
             self.verificator(2, "width")
-        self.__size = value
+        self.width = value
 
     def update(self, *args, **kwargs):
         """Method that assigns an argument to each attribute"""
@@ -54,14 +53,8 @@ class Square(Rectangle):
         """Returns the dictionary representation of a Square"""
         new_dictionary = {}
         for k, v in self.__dict__.items():
-            if k == "_Rectangle__width":
-                continue
-            elif k == "_Rectangle__height":
-                continue
-            elif k[:12] == "_Rectangle__":
+            if k[:12] == "_Rectangle__":
                 new_dictionary[k[12:]] = v
-            elif k[:9] == "_Square__":
-                new_dictionary[k[9:]] = v
             else:
                 new_dictionary[k] = v
         return new_dictionary
