@@ -29,7 +29,7 @@ class Square(Rectangle):
         if type(value) != int:
             self.verificator(1, "width")
         if value < 0:
-            self.verificator(3, "width")
+            self.verificator(2, "width")
         self.__size = value
 
     def update(self, *args, **kwargs):
@@ -39,7 +39,8 @@ class Square(Rectangle):
                 if position == 0:
                     self.id = args[position]
                 if position == 1:
-                    self.__size = args[position]
+                    self.width = args[position]
+                    self.height = args[position]
                 if position == 2:
                     self.x = args[position]
                 if position == 3:

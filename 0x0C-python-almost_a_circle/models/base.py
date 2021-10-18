@@ -17,6 +17,10 @@ class Base:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
 
+    def reset_nb_objects():
+        """Reset the number of objects"""
+        Base._Base__nb_objects = 0
+
     @staticmethod
     def to_json_string(list_dictionaries):
         """Returns the JSON string representation of list_dictionaries"""
