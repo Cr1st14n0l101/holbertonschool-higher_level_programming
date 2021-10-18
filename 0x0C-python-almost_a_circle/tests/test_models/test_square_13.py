@@ -103,5 +103,6 @@ class TestRectangleClass_dict(unittest.TestCase):
         json_dictionary = Square.to_json_string(None)
         self.assertEqual([], json.loads(json_dictionary))
 
+
 if __name__ == "__main__":
     unittest.main()
