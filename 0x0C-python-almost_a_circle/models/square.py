@@ -57,4 +57,6 @@ class Square(Rectangle):
                 new_dictionary[k[12:]] = v
             else:
                 new_dictionary[k] = v
+        new_dictionary['size'] = new_dictionary['width']
+        del new_dictionary['width'], new_dictionary['height']
         return new_dictionary
