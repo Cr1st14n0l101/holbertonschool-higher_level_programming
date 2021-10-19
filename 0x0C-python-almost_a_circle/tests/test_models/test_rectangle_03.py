@@ -11,21 +11,13 @@ class TestBaseClass(unittest.TestCase):
         """Reset the number of objects"""
         Base.reset_nb_objects()
 
-    def test_base_cases(self):
-        """Tests for base cases"""
-        r1 = Rectangle(3, 2)
-        self.assertEqual(r1.area(), 6)
-        r2 = Rectangle(2, 10)
-        self.assertEqual(r2.area(), 20)
-        r3 = Rectangle(8, 7, 0, 0, 12)
-        self.assertEqual(r3.area(), 56)
+    def test_area(self):
+        """Simple area test"""
+        r = Rectangle(32, 2)
+        self.assertEqual(r.area(), 64)
 
-    def test_base_cases(self):
-        """Tests when argumens is passed to area"""
+    def test_exceptions(self):
+        """Test exceptions"""
         with self.assertRaises(TypeError):
-            r1 = Rectangle(3, 2)
-            self.assertEqual(r1.area(2343456436), 6)
-
-
-if __name__ == "__main__":
-    unittest.main()
+            s1 = Rectangle(10, 5)
+            s1.area(32343)

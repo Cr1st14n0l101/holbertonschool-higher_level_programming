@@ -6,13 +6,13 @@ from models.base import Base
 
 class TestBaseClass(unittest.TestCase):
     """Tests for the instance id from base class"""
-    def test_00_base_case(self):
-        """Test for a instance"""
+    def test_id_valid(self):
+        """Check only one instance"""
         b = Base()
         self.assertEqual(b.id, 1)
 
-    def test_01_base_cases(self):
-        """Tests normal instances"""
+    def test_id_valid_multiple(self):
+        """Check multiple instances"""
         b1 = Base()
         self.assertEqual(b1.id, 2)
         b2 = Base()
@@ -24,109 +24,63 @@ class TestBaseClass(unittest.TestCase):
         b5 = Base()
         self.assertEqual(b5.id, 5)
 
-    def test_02_giving_not_a_integer(self):
-        """Tests for None case"""
-        b6 = Base()
-        self.assertEqual(b6.id, 6)
-        b7 = Base()
-        self.assertEqual(b7.id, 7)
-        b8 = Base()
-        self.assertEqual(b8.id, 8)
-        b9 = Base(None)
-        self.assertEqual(b9.id, 9)
+    def test_id_valid_same_id(self):
+        """Check if instances have the same id"""
+        b6 = Base(77)
+        self.assertEqual(b6.id, 77)
+        b7 = Base(77)
+        self.assertEqual(b7.id, 77)
 
-    def test_03_arguments_in_init(self):
-        """Tests for arguments exceded in the class"""
+    def test_id_valid_param_str(self):
+        """Check str as id"""
+        b8 = Base("Holberton")
+        self.assertEqual(b8.id, "Holberton")
+
+    def test_id_valid_param_list(self):
+        """Check list as id"""
+        b9 = Base([98, 977])
+        self.assertEqual(b9.id, [98, 977])
+
+    def test_id_valid_param_tuple(self):
+        """Check tuple as id"""
+        b10 = Base((98, 977))
+        self.assertEqual(b10.id, (98, 977))
+
+    def test_id_valid_param_dict(self):
+        """Check dict as id"""
+        b11 = Base({"98": 977})
+        self.assertEqual(b11.id, {"98": 977})
+
+    def test_id_valid_param_set(self):
+        """Check set as id"""
+        b12 = Base({"98", 977})
+        self.assertEqual(b12.id, {"98", 977})
+
+    def test_id_valid_param_float(self):
+        """Check float as id"""
+        b13 = Base(3.14)
+        self.assertEqual(b13.id, 3.14)
+
+    def test_id_valid_param_inf(self):
+        """Check inf as id"""
+        b14 = Base(float('inf'))
+        self.assertEqual(b14.id, float('inf'))
+
+    def test_id_valid_param_func(self):
+        """Check inf as id"""
+        b15 = Base(len)
+        self.assertEqual(b15.id("Hi"), 2)
+
+    def test_id_valid_isprivate(self):
+        """Check whether __nb_objects is private"""
+        with self.assertRaises(AttributeError):
+            print(Base.__nb_objects)
+
+    def test_params_exceptions_args_six(self):
+        """Checks wrong number of arguments, six"""
         with self.assertRaises(TypeError):
-            b10 = Base(1, 2)
-
-    def test_04_infinite_passed(self):
-        """Tests when infinite is passed to the class"""
-        b11 = Base(float('inf'))
-        self.assertEqual(b11.id, float('inf'))
-
-    def test_negative_numbers(self):
-        """Tests for negative numbers"""
-        b12 = Base(-13)
-        self.assertEqual(b12.id, -13)
-
-    def test_floats_numbers(self):
-        """Tests for floats numbers"""
-        b13 = Base(13.3)
-        self.assertEqual(b13.id, 13.3)
-
-    def test_float_negative_numbers(self):
-        """Tests for float negative numbers"""
-        b14 = Base(-13.3)
-        self.assertEqual(b14.id, -13.3)
-
-    def test_bolean_true(self):
-        """Tests for bloean true"""
-        b15 = Base(True)
-        self.assertEqual(b15.id, 1)
-
-    def test_bolean_false(self):
-        """Tests for bolean false numbers"""
-        b16 = Base(False)
-        self.assertEqual(b16.id, 0)
-
-    def test_list_01(self):
-        """Tests for list"""
-        b17 = Base([])
-        self.assertEqual(b17.id, [])
-
-    def test_tuple_01(self):
-        """Tests for tuple"""
-        b18 = Base(())
-        self.assertEqual(b18.id, ())
-
-    def test_list_02(self):
-        """Tests for list"""
-        b19 = Base([1])
-        self.assertEqual(b19.id, [1])
-
-    def test_tuple_02(self):
-        """Tests for list"""
-        b20 = Base((1))
-        self.assertEqual(b20.id, 1)
-
-    def test_list_03(self):
-        """Tests for list"""
-        b21 = Base([1, 2, 3])
-        self.assertEqual(b21.id, [1, 2, 3])
-
-    def test_tuple_03(self):
-        """Tests for tuple"""
-        b22 = Base((1, 2, 3))
-        self.assertEqual(b22.id, (1, 2, 3))
-
-    def test_strings(self):
-        """Tests for string"""
-        b23 = Base("python")
-        self.assertEqual(b23.id, "python")
-
-    def test_character(self):
-        """Tests for characters"""
-        b24 = Base('C')
-        self.assertEqual(b24.id, 'C')
-
-    def test_05_instances_with_same_id(self):
-        """Tests instances with same id"""
-        b25 = Base(123)
-        self.assertEqual(b25.id, 123)
-        b26 = Base(123)
-        self.assertEqual(b26.id, 123)
-
-    def test_06_ids_too_large(self):
-        """Tests id with long numbers"""
-        b27 = Base(54651513215645416546546548974486846874987889877)
-        self.assertEqual(
-            b27.id, 54651513215645416546546548974486846874987889877)
-        b28 = Base(
-            87437568947689547689576985487689547569847654756486798954)
-        self.assertEqual(
-            b28.id, 87437568947689547689576985487689547569847654756486798954)
+            r = Base(2, 3, 23, 12, 234, 4)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

@@ -37,7 +37,7 @@ class TestSquareleClass_init(unittest.TestCase):
         """Test attr of Rectangle, size should not created"""
         s1 = Square(2)
         with self.assertRaises(AttributeError):
-            print(s1.__size)
+            print(s1._Square__size)
 
     def test_attr_str(self):
         """Test attr of Square, size should not created"""

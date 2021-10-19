@@ -14,164 +14,86 @@ class TestBaseClass(unittest.TestCase):
         """Reset the number of objects"""
         Base.reset_nb_objects()
 
-    def test_base_case(self):
-        """Check the base case"""
-        file = io.StringIO()
+    def test_args_order(self):
+        """Checks correct order of arguments"""
+        f = io.StringIO()
+        s = "[Rectangle] (1) 10/10 - 10/89"
         r1 = Rectangle(10, 10, 10, 10)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (1) 10/10 - 10/10\n")
+        r1.update(height=89)
+        with redirect_stdout(f):
+            print(r1, end="")
+        self.assertEqual(f.getvalue(), s)
 
-        file = io.StringIO()
-        r1.update(2, height=1)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (2) 10/10 - 10/10\n")
+        f = io.StringIO()
+        s = "[Rectangle] (89) 10/10 - 10/10"
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(**{'id': 89})
+        with redirect_stdout(f):
+            print(r1, end="")
+        self.assertEqual(f.getvalue(), s)
 
-        file = io.StringIO()
-        r1.update()
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (2) 10/10 - 10/10\n")
+        r1.update(width=1, x=2)
+        f = io.StringIO()
+        s = "[Rectangle] (89) 2/10 - 1/10"
+        with redirect_stdout(f):
+            print(r1, end="")
+        self.assertEqual(f.getvalue(), s)
 
-        file = io.StringIO()
         r1.update(y=1, width=2, x=3, id=89)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (89) 3/1 - 2/10\n")
+        f = io.StringIO()
+        s = "[Rectangle] (89) 3/1 - 2/10"
+        with redirect_stdout(f):
+            print(r1, end="")
+        self.assertEqual(f.getvalue(), s)
 
-        file = io.StringIO()
         r1.update(x=1, height=2, y=3, width=4)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (89) 1/3 - 4/2\n")
+        f = io.StringIO()
+        s = "[Rectangle] (89) 1/3 - 4/2"
+        with redirect_stdout(f):
+            print(r1, end="")
+        self.assertEqual(f.getvalue(), s)
 
-    def test_args_and_no_keys(self):
-        """Checks the behavior when arg is passed"""
-        file = io.StringIO()
+        f = io.StringIO()
+        s = "[Rectangle] (89) 10/10 - 1/10"
         r1 = Rectangle(10, 10, 10, 10)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (1) 10/10 - 10/10\n")
+        r1.update(**{'id': 89, 'width': 1})
+        with redirect_stdout(f):
+            print(r1, end="")
+        self.assertEqual(f.getvalue(), s)
 
-        file = io.StringIO()
-        r1.update(2, height=1)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (2) 10/10 - 10/10\n")
-
-    def test_only_keys(self):
-        """Checks the behavior when arg is passed"""
-        file = io.StringIO()
+        f = io.StringIO()
+        s = "[Rectangle] (88) 10/10 - 1/2"
         r1 = Rectangle(10, 10, 10, 10)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (1) 10/10 - 10/10\n")
+        r1.update(**{'id': 88, 'width': 1, 'height': 2})
+        with redirect_stdout(f):
+            print(r1, end="")
+        self.assertEqual(f.getvalue(), s)
 
-        file = io.StringIO()
-        r1.update(y=1, width=2, x=3, id=89)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (89) 3/1 - 2/10\n")
-
-    def test_one_key_(self):
-        """Checks the behavior when a key is passed"""
-        file = io.StringIO()
+        f = io.StringIO()
+        s = "[Rectangle] (88) 3/10 - 1/2"
         r1 = Rectangle(10, 10, 10, 10)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (1) 10/10 - 10/10\n")
+        r1.update(**{'id': 88, 'width': 1, 'height': 2, 'x': 3})
+        with redirect_stdout(f):
+            print(r1, end="")
+        self.assertEqual(f.getvalue(), s)
 
-        file = io.StringIO()
-        r1.update(width=2)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (1) 10/10 - 2/10\n")
-
-    def test_two_keys_(self):
-        """Checks the behavior when a key is passed"""
-        file = io.StringIO()
+        f = io.StringIO()
+        s = "[Rectangle] (88) 3/4 - 1/2"
         r1 = Rectangle(10, 10, 10, 10)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (1) 10/10 - 10/10\n")
+        r1.update(**{'id': 88, 'width': 1, 'height': 2, 'x': 3, 'y': 4})
+        with redirect_stdout(f):
+            print(r1, end="")
+        self.assertEqual(f.getvalue(), s)
 
-        file = io.StringIO()
-        r1.update(width=2, height=2)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (1) 10/10 - 2/2\n")
+    def test_wrong_keywords(self):
+        """Test keywords"""
+        s1 = Rectangle(10, 2, 1)
+        s1.update(key=23, school=32)
+        self.assertEqual(getattr(s1, "key", 0), 0)
+        self.assertEqual(getattr(s1, "school", 0), 0)
 
-    def test_three_keys_(self):
-        """Checks the behavior when a key is passed"""
-        file = io.StringIO()
-        r1 = Rectangle(10, 10, 10, 10)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (1) 10/10 - 10/10\n")
-
-        file = io.StringIO()
-        r1.update(width=2, height=2, x=2)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (1) 2/10 - 2/2\n")
-
-    def test_four_keys_(self):
-        """Checks the behavior when a key is passed"""
-        file = io.StringIO()
-        r1 = Rectangle(10, 10, 10, 10)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (1) 10/10 - 10/10\n")
-
-        file = io.StringIO()
-        r1.update(width=2, height=2, x=2, y=2)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (1) 2/2 - 2/2\n")
-
-    def test_five_keys_(self):
-        """Checks the behavior when a key is passed"""
-        file = io.StringIO()
-        r1 = Rectangle(10, 10, 10, 10)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (1) 10/10 - 10/10\n")
-
-        file = io.StringIO()
-        r1.update(width=2, height=2, x=2, y=2, id=2)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (2) 2/2 - 2/2\n")
-
-    def test_six_keys_(self):
-        """Checks the behavior when a key is passed"""
-        file = io.StringIO()
-        r1 = Rectangle(10, 10, 10, 10)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (1) 10/10 - 10/10\n")
-
-        file = io.StringIO()
-        r1.update(width=2, height=2, x=2, y=2, id=2)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (2) 2/2 - 2/2\n")
-
-    def test_key_unknown(self):
-        """Checks the behavior when a key is passed"""
-        file = io.StringIO()
-        r1 = Rectangle(10, 10, 10, 10)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (1) 10/10 - 10/10\n")
-
-        file = io.StringIO()
-        r1.update(something=2)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (1) 10/10 - 10/10\n")
-
-
-if __name__ == "__main__":
-    unittest.main()
+    def test_many_args(self):
+        """Test with too many arguments"""
+        r1 = Rectangle(10, 10)
+        r1.update(10, 10, 10, 10, 10, 10, 10, 10)
+        self.assertEqual(str(r1), "[Rectangle] (10) 10/10 - 10/10")

@@ -16,62 +16,34 @@ class TestSquareleClass_size(unittest.TestCase):
         """Resets __nb_objects"""
         Base.reset_nb_objects()
 
-    def test_init_0(self):
-        """Test init of Rectangle"""
+    def test_setter(self):
+        """Checks setter"""
         s1 = Square(5)
-        st = "[Square] (1) 0/0 - 5"
-        self.assertEqual(str(s1), st)
+        self.assertEqual(s1._Rectangle__width, 5)
 
-    def test_init_1(self):
-        """Test init of Rectangle"""
-        s1 = Square(5, 5)
-        st = "[Square] (1) 5/0 - 5"
-        self.assertEqual(str(s1), st)
-
-    def test_attr_0(self):
-        """Test attr of Rectangle"""
+    def test_getter(self):
+        """Checks getter"""
         s1 = Square(5)
-        self.assertEqual([s1.width, s1.height], [5, 5])
+        self.assertEqual(s1.size, 5)
 
-    def test_attr_1(self):
-        """Test attr of Rectangle, size should not created"""
-        s1 = Square(2)
-        with self.assertRaises(AttributeError):
-            print(s1._Square__size)
-
-    def test_attr_str(self):
-        """Test attr of Square, size should not created"""
-        with self.assertRaises(TypeError):
-            Square("1")
-
-        with self.assertRaises(TypeError):
-            Square(1, "1")
-
-        with self.assertRaises(TypeError):
-            Square(1, 2, "1")
-
-    def test_inheritence(self):
-        """Tests if Square is child of Rectangle"""
-        self.assertTrue(issubclass(Square, Rectangle))
-
-    def test_exceptions(self):
+    def test_exceptions_0(self):
         """Test exceptions"""
-        with self.assertRaises(TypeError):
-            s1 = Square(10, 2, 1, 32, 233232)
+        s1 = Square(5)
+        msg = "width must be an integer"
+        err = TypeError
+        try:
+            s1.size = "32322"
+        except Exception as e:
+            self.assertEqual(str(e), msg)
+            self.assertTrue(isinstance(e, err))
 
-        with self.assertRaises(TypeError):
-            s1 = Square()
-
-    def test_attr_valuerr(self):
-        """Test attr of Square"""
-        with self.assertRaises(ValueError):
-            Square(-1)
-
-        with self.assertRaises(ValueError):
-            Square(1, -1)
-
-        with self.assertRaises(ValueError):
-            Square(1, 2, -1)
-
-        with self.assertRaises(ValueError):
-            Square(0)
+    def test_exceptions_1(self):
+        """Test exceptions"""
+        s1 = Square(5)
+        msg = "width must be > 0"
+        err = ValueError
+        try:
+            s1.size = -32
+        except Exception as e:
+            self.assertEqual(str(e), msg)
+            self.assertTrue(isinstance(e, err))

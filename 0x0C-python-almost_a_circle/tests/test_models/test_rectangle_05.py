@@ -13,22 +13,33 @@ class TestBaseClass(unittest.TestCase):
         """Reset the number of objects"""
         Base.reset_nb_objects()
 
-    def test_base_case_00(self):
-        """Checks the __str__ representation"""
-        file = io.StringIO()
-        r1 = Rectangle(4, 6, 2, 1, 12)
-        with redirect_stdout(file):
-            print(r1)
-        self.assertEqual(file.getvalue(), "[Rectangle] (12) 2/1 - 4/6\n")
+    def test_str_defaults(self):
+        """Tests __str__ method"""
+        Base.reset_nb_objects()
+        f = io.StringIO()
+        s = "[Rectangle] (1) 0/0 - 4/3"
+        r1 = Rectangle(4, 3)
+        with redirect_stdout(f):
+            print(r1, end="")
+        self.assertEqual(f.getvalue(), s)
 
-    def test_base_case_01(self):
-        """Checks the __str__ representation"""
-        file = io.StringIO()
-        r2 = Rectangle(5, 5, 1)
-        with redirect_stdout(file):
-            print(r2)
-        self.assertEqual(file.getvalue(), "[Rectangle] (1) 1/0 - 5/5\n")
+        f = io.StringIO()
+        s = "[Rectangle] (2) 32/0 - 4/3"
+        r2 = Rectangle(4, 3, 32)
+        with redirect_stdout(f):
+            print(r2, end="")
+        self.assertEqual(f.getvalue(), s)
 
+        f = io.StringIO()
+        s = "[Rectangle] (3) 3/5 - 4/3"
+        r3 = Rectangle(4, 3, 3, 5)
+        with redirect_stdout(f):
+            print(r3, end="")
+        self.assertEqual(f.getvalue(), s)
 
-if __name__ == "__main__":
-    unittest.main()
+        f = io.StringIO()
+        s = "[Rectangle] (77) 3/5 - 4/3"
+        r77 = Rectangle(4, 3, 3, 5, 77)
+        with redirect_stdout(f):
+            print(r77, end="")
+        self.assertEqual(f.getvalue(), s)
