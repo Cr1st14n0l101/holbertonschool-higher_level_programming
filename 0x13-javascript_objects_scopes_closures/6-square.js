@@ -14,8 +14,9 @@ module.exports = class Square extends square {
     for (let i = 0; i < this.size; i++) {
       line += c;
     }
-    for (let j = 0; j < this.size; j++) {
+    for (let j = 0; j < this.size - 1; j++) {
       console.log(line);
     }
+    console.log(line);
   }
 };
