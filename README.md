@@ -1,6 +1,3 @@
-#  # 0x00. Python - Hello, World
-
-
 # Holbertonschool-higher_level_programming
 
 This is a repository that oriented to Python programming language.
