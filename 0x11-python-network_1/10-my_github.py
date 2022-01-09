@@ -4,7 +4,6 @@ Takes your GitHub credentials
 (username and password) and uses
 the GitHub API to display your id
 """
-import json
 import requests
 from sys import argv
 
