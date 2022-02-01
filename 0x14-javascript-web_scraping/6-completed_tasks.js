@@ -6,21 +6,14 @@ request(args[2], function (error, response, body) {
   const json = JSON.parse(body);
   const size = Object.keys(json).length;
   const tasksObject = {};
-  let counter = 0;
-  let id = json[0].userId;
-  for (let i = 0; i <= size; i++) {
-    if (i === size) {
-      tasksObject[id] = counter;
-      break;
+  for (let i = 0; i < size; i++) {
+    if (json[i].completed) {
+      if (tasksObject[json[i].userId]) {
+        tasksObject[json[i].userId] += 1;
+      } else {
+        tasksObject[json[i].userId] = 1;
+      }
     }
-    if (json[i].userId !== id) {
-      tasksObject[id] = counter;
-      counter = 0;
-    }
-    if (json[i].completed === true) {
-      counter += 1;
-    }
-    id = json[i].userId;
   }
   console.log(tasksObject);
 });
