@@ -18,7 +18,7 @@ function helloTraslatorOnClick () {
 function helloTraslatorOnEnter () {
   $('INPUT#language_code').keypress(async function (event) {
     const keycode = (event.keyCode ? event.keyCode : event.which);
-    if (keycode === '13') {
+    if (keycode == '13') {
       language = $('INPUT#language_code').val();
       const response = await fetch('https://fourtonfish.com/hellosalut/?lang=' + language);
       const traslation = await response.json();
