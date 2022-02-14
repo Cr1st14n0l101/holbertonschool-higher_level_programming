@@ -1,0 +1,3 @@
+window.onload = (event) => {
+  document.querySelector('header').style.color = '#FF0000';
+};
